@@ -1,0 +1,15 @@
+{% set sponsors = __SELF__.sponsors %}
+{% set cities = __SELF__.cities %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 text-center sponsors">
+                {% if sponsors %}
+                    {% partial '@sponsors' sponsors = sponsors %}
+                {% else %}
+                    {% partial '@cities' cities = cities %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

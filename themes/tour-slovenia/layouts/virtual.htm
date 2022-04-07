@@ -1,0 +1,116 @@
+[staticPage]
+useContent = 1
+default = 1
+
+[localePicker]
+forceUrl = 1
+
+[staticMenuMultilingual staticMenu]
+code = "main-menu"
+
+==
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% partial 'virtual/head' %}
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="200" tabindex="0">
+
+    <header>
+        {% partial 'virtual/navbar' %}
+        <div class="splash">
+            <!--div class="lang">
+              <a href="/en/virtual">English</a>
+              <a href="/sl/virtual">Slovensko</a>
+            </div-->
+            <div class="leadtitle">
+              <div class="lang">
+                {% if activeLocale != 'en' %}
+                  <a href="/en/virtual">Switch to English language</a>
+                {% else %}
+                  <a href="/sl/virtual">Zamenjaj na Slovenski jezik</a>
+                {% endif %}
+              </div>
+              <h1>{{ 'virtual.slider.title'|_ }}</h1>
+              <h2>{{ 'virtual.slider.subtitle'|_ }}</h2>
+              <div class="chevron text-center"><a href="#stage1"><i class="fa fa-chevron-down">&nbsp;</i></a></div>
+            </div>
+            <video id="rouvyvideo" class="slidervideo" role="presentation" crossorigin="anonymous" playsinline="1" preload="auto" muted="1" loop="1" autoplay="1" tabindex="-1" width="100vw" height="100vh" src="https://video.wixstatic.com/video/b78650_77173c28de9a409a853f222149af160c/1080p/mp4/file.mp4">
+              Your browser doesn't support this video, please try using another internet browser.
+            </video>
+        </div>
+    </header>
+
+{repeater name="stages" label="Stages" prompt="Add another stage section" tab="Stages"}
+
+  {variable name="stage_number" label="Stage number" tab="Stages" type="text"}{/variable}
+
+  {variable name="stage_title_start" label="Title Start" tab="Stages" type="text"}{/variable}
+  {variable name="stage_title_end" label="Title End" tab="Stages" type="text"}{/variable}
+
+  {variable name="stage_info_hour" label="Start Hour" tab="Stages" type="text"}{/variable}
+  {variable name="stage_info_length" label="Track Length" tab="Stages" type="text"}{/variable}
+  {variable name="stage_info_elevation" label="Track Elevation" tab="Stages" type="text"}{/variable}
+
+  {variable name="stage_rid_datee" label="Ride Date" tab="Stages" type="text"}{/variable}
+  {variable name="stage_ride_title" label="Ride Title" tab="Stages" type="text"}{/variable}
+  {variable name="stage_race_date" label="Race Date" tab="Stages" type="text"}{/variable}
+  {variable name="stage_race_title" label="Race Title" tab="Stages" type="text"}{/variable}
+
+  {variable name="stage_rider_image" label="Rider image" type="mediafinder" tab="Stages" mode="image"}{/variable}
+  {variable name="stage_rider_name" label="Rider name" tab="Stages" type="text"}{/variable}
+  {variable name="stage_description" label="Description" tab="Stages" type="richeditor" size="small"}{/variable}
+
+  {variable name="stage_sponsor" label="Sponsor logo" type="mediafinder" tab="Stages" mode="image"}{/variable}
+
+  {variable name="stage_route" label="Route image" type="mediafinder" tab="Stages" mode="image"}{/variable}
+  {variable name="stage_video" label="Video URL" tab="Stages" type="text"}{/variable}
+
+  {variable name="stage_rouvy_route" label="Rouvy Route URL" tab="Stages" type="text"}{/variable}
+  {variable name="stage_rouvy_ride" label="Rouvy Ride URL" tab="Stages" type="text"}{/variable}
+  {variable name="stage_rouvy_race" label="Rouvy Race URL" tab="Stages" type="text"}{/variable}
+  
+{/repeater}
+
+    <section class="stagescontent">
+
+      <!-- stages -->
+      <div class="container-fluid stages">
+        {% partial 'virtual/stages/stage' %}
+
+        {#% partial 'virtual/stages/stage-1' %}
+        {% partial 'virtual/stages/stage-2' %}
+        {% partial 'virtual/stages/stage-3' %}
+        {% partial 'virtual/stages/stage-4' %}
+        {% partial 'virtual/stages/stage-5' %#}
+
+      </div>
+
+    </section>
+
+    <section>
+      <!-- fullwidthimage -->
+      <div class="container-fluid p-0">
+        <img src="https://static.wixstatic.com/media/b78650_6bdbf1504e9f4ded952dd99c7a1a899e~mv2.jpg/v1/fill/w_1520,h_844,al_t,q_85,usm_0.66_1.00_0.01/b78650_6bdbf1504e9f4ded952dd99c7a1a899e~mv2.webp" alt="" style="width: 100%; height: auto; object-fit: cover; object-position: 50% 0%;">
+      </div>
+    </section>
+
+    <section class="pagecontent">
+
+      <!-- content -->
+      <div id="info" class="stagetag"></div>
+      <div class="container-fluid content">
+        {% page %}
+      </div>
+
+    </section>
+
+    <footer>
+      {% partial 'virtual/footer' %}
+    </footer>
+
+    {% partial 'virtual/scripts' %}
+
+    {% partial 'site/ga' %}
+  </body>
+</html>

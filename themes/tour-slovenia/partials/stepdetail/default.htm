@@ -1,0 +1,456 @@
+[viewBag]
+==
+{% set step = __SELF__.step %}
+{% import "macros/active-stage.htm" as myMacros %}
+
+{% put styles %}
+<style>
+.stages {
+    margin: 4em 0 0 0;
+}
+.stages div.stg {
+  font-size: 6rem;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: lowercase;
+  color: #97d21f;
+  /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+  line-height: 16rem;
+}
+.stages div.num {
+  font-size: 16rem;
+  font-weight: 800;
+  font-style: italic;
+  color: #00377b;
+  /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+  line-height: 16rem;
+  margin-right: 2rem;  
+}
+.stages hr {
+  border: 10px solid #aaa;
+  /*border-radius: 5px;*/
+  margin-top: -6.5rem;
+  z-index: -1;
+  position: relative;
+  /*box-shadow: 0 0 64px #000;*/
+  opacity: .2;
+}
+
+.flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+.stages .basedata {
+    font-size: 2.4em;
+    font-weight: bold;
+    margin-top: -40px;
+}
+.stages .basedata .date {
+    color: #00377b;
+}
+.stages .basedata .dist {
+    color: #97d21f;
+}
+.stages .basedata i {
+    color: #a3a3a3;
+}
+.stages .basedata, .etapa-single, .elinks {
+    padding: 0 .5em;
+}
+.elinks {
+    margin-top: 0em;
+}
+.elinks a {
+    font-size: 1.8em;
+    display: inline-block;
+    padding: .4em .5em;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.elinks a i {
+    color: #a3a3a3;
+    transition: all 0.2s ease-in-out;
+}
+.elinks a:hover, .elinks a:hover i {
+    background: #97d21f;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+.etapa-map {
+    margin-bottom: 1em;
+}
+
+.etapa-single {
+    float: none;
+    width: auto;
+}
+@media (max-width: 992px) {
+
+    .elinks a {
+        display: block;
+        transition: all 0.2s ease-in-out;
+    }
+    .elinks a i {
+        width: 1.2em;
+        text-align: right;
+        transition: all 0.2s ease-in-out;
+    }
+
+}
+@media (max-width: 768px) {
+
+    .stages div.stg {
+        font-size: 4rem;
+        font-weight: 800;
+        font-style: italic;
+        text-transform: lowercase;
+        color: #97d21f;
+        /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+        line-height: 12rem;
+    }
+    .stages div.num {
+        font-size: 12rem;
+        font-weight: 800;
+        font-style: italic;
+        color: #00377b;
+        /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+        line-height: 12rem;
+        margin-right: 1rem;  
+    }
+    .stages hr {
+        border: 8px solid #aaa;
+        border-radius: 4px;
+        margin-top: -4.5rem;
+        z-index: -1;
+        position: relative;
+        /*box-shadow: 0 0 64px #000;*/
+        opacity: .2;
+    }
+
+    .stages .basedata {
+        font-size: 2.0em;
+        font-weight: bold;        
+        margin-top: -40px;
+    }
+    .stages .basedata, .etapa-single, .elinks {
+        padding: 0 .2em;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .stages div.stg {
+        font-size: 3.6rem;
+        font-weight: 800;
+        font-style: italic;
+        text-transform: lowercase;
+        color: #97d21f;
+        /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+        line-height: 10rem;
+    }
+    .stages div.num {
+        font-size: 8rem;
+        font-weight: 800;
+        font-style: italic;
+        color: #00377b;
+        /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+        line-height: 10rem;
+        margin-right: 1rem;  
+    }
+    .stages hr {
+        border: 8px solid #aaa;
+        border-radius: 4px;
+        margin-top: -4.5rem;
+        z-index: -1;
+        position: relative;
+        /*box-shadow: 0 0 64px #000;*/
+        opacity: .2;
+    }
+
+    .stages .basedata {
+        font-size: 1.6em;
+        font-weight: bold;
+        margin-top: -40px;
+    }
+    .stages .basedata, .etapa-single, .elinks {
+        padding: 0;
+    }
+
+}
+.cities .small i {
+    color: #a3a3a3;
+}
+</style>
+{% endput %}
+<div class="etapa-tabs clearfix">
+    <div class="item {% if id == 1 %}active{% endif %}">
+        <a href="/{{ activeLocale }}/{{ 'etapa'|_|lower }}/1"><strong>1.</strong><span> {{ 'etapa'|_ }}</span></a>
+    </div>
+    <div class="item {% if id == 2 %}active{% endif %}">
+        <a href="/{{ activeLocale }}/{{ 'etapa'|_|lower }}/2"><strong>2.</strong><span> {{ 'etapa'|_ }}</span></a>
+    </div>
+    <div class="item {% if id == 3 %}active{% endif %}">
+        <a href="/{{ activeLocale }}/{{ 'etapa'|_|lower }}/3"><strong>3.</strong><span> {{ 'etapa'|_ }}</span></a>
+    </div>
+    <div class="item {% if id == 4 %}active{% endif %}">
+        <a href="/{{ activeLocale }}/{{ 'etapa'|_|lower }}/4"><strong>4.</strong><span> {{ 'etapa'|_ }}</span></a>
+    </div>
+    <div class="item {% if id == 5 %}active{% endif %}">
+        <a href="/{{ activeLocale }}/{{ 'etapa'|_|lower }}/5"><strong>5.</strong><span> {{ 'etapa'|_ }}</span></a>
+    </div>
+</div>
+
+{#<div class="etapa-single">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h3>{{ step.time_start|date('d.m.Y') }} | <strong>{{ step.distance }}</strong></h3>
+            </div>
+        </div>
+    </div>
+    <div class="etapa-map">
+        <div class="etapa-start" data-img="{{ step.image_start.path }}">
+            <h2><img src="{{ 'assets/images/icons/stage-start.png'|theme }}"> {{ step.start }}</h2>
+        </div>
+        <div class="etapa-end" data-img="{{ step.image_end.path }}">
+            <h2><img src="{{ 'assets/images/icons/stage-finish.png'|theme }}"> {{ step.end }}</h2>
+        </div>
+    </div>
+</div>#}
+
+<div class="stages">
+    <div class="d-flex">
+        <div class="flex-grow-1 dots"></div>
+        <div class="stg">{{ 'etapa'|_ }}</div>
+        <div class="num float-right">{{ step.name }}</div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+        <div class="row basedata">
+            <div class="col-5 date"><i class="far fa-calendar-alt"></i> {{ step.time_start|date('d.m.Y') }}</div>
+            <div class="col-5 dist"><i class="fas fa-route"></i> {{ step.distance }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="elinks">
+    {% if step.step_profile.path is not empty %}
+        <a href="{{ step.step_profile.path }}" target="_blank"><i class="fas fa-mountain"></i> {{ 'Profil etape'|_ }}</a>
+    {% endif %}
+    {% if step.step_timeline.path is not empty %}
+        <a href="{{ step.step_timeline.path }}" target="_blank"><i class="fas fa-stopwatch"></i> {{ 'Časovnica'|_ }}</a>
+    {% endif %}
+    {% if step.napovednik is not empty %}
+        <a href="{{ step.napovednik }}" target="_blank"><i class="fas fa-play-circle"></i> {{ 'Video'|_ }}</a>
+    {% endif %}
+    {% if step.step_3d.path is not empty %}
+        <a href="{{ step.step_3d.path }}" target="_blank"><i class="fas fa-road"></i> {{ '3D Video'|_ }}</a>
+    {% endif %}
+    {% if step.tracking.path is not empty %}
+        <a href="{{ step.tracking }}" target="_blank"><i class="fab fa-line"></i> {{ 'Sledenje v živo' |_ }}</a>
+    {% endif %}    
+    <br class="d-none d-lg-block">
+    {% if step.stage_results.path %}
+        <a target="_blank" href="{{ step.stage_results.path }}#zoom=100"><i class="fas fa-clipboard-list"></i> {{ 'Rezultati' | _ }}</a>
+    {% endif %}
+    {% if step.highlights %}
+        <a target="_blank" href="{{ step.highlights }}"><i class="fas fa-highlighter"></i> {{ 'Utrinki' | _ }}</a>
+    {% endif %}
+    {% if step.behind %}
+        <a target="_blank" href="{{ step.behind }}"><i class="fas fa-users-cog"></i> {{ 'Zakulisje' | _ }}</a>
+    {% endif %}
+</div>
+
+<div class="etapa-single">
+    <div class="etapa-map">
+        <div class="etapa-start" data-img="{{ step.image_start.path }}">
+            <h2><img src="{{ 'assets/images/icons/stage-start.png'|theme }}"> {{ step.start }}</h2>
+        </div>
+        <div class="etapa-end" data-img="{{ step.image_end.path }}">
+            <h2><img src="{{ 'assets/images/icons/stage-finish.png'|theme }}"> {{ step.end }}</h2>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>{{ 'Gostujoči kraji'|_ }} {% if step.regija %}- <strong>{{ step.regija }}</strong>{% endif %}</h2>
+            <ul class="cities">
+                {% for city in step.cities %}
+                    {% if loop.first %}
+                        <li class="first">
+                    {% elseif loop.last %}
+                        <li class="last">
+                    {% else %}
+                        <li>
+                    {% endif %}
+                        {% if city.city %}
+                            <a data-request="{{ __SELF__ }}::onClick"
+                               data-request-data="id: '{{ city.city }}'"
+                               data-request-success="$('#open-modal').click(); $.colorbox.remove(); $('.gallery-img a').colorbox({rel:'gallery', transition:'fade', width:'90%', height:'90%'});">
+                                {{ city.name }} <span class="small"><i class="fa fa-info-circle" aria-hidden="true"></i> ({{ 'o kraju'|_ }})</span>
+                            </a>
+                        {% else %}
+                            {{ city.name }}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <h2>{{ 'Profil etape'|_ }}</h2>
+
+            {#<div class="row stage-files">
+                {% if step.step_profile.path is not empty %}
+                    <div class="col-md-3">
+                        <a class="btn btn-block btn-large blue" target="_blank" href="{{ step.step_profile.path }}#zoom=100">{{ 'Profil etape' | _ }}</a>
+                    </div>
+                {% endif %}
+                {% if step.step_timeline.path is not empty %}
+                    <div class="col-md-3">
+                        <a class="btn btn-block btn-large blue" target="_blank" href="{{ step.step_timeline.path }}#zoom=100">{{ 'Časovnica etape' | _ }}</a>
+                    </div>
+                {% endif %}
+                {% if step.step_3d.path is not empty %}
+                    <div class="col-md-3">
+                        <a class="btn btn-block btn-large blue" target="_blank" href="{{ step.step_3d.path }}">{{ '3D predstavitev' | _ }}</a>
+                    </div>
+                {% endif %}
+                {% if step.napovednik is not empty %}
+                    <div class="col-md-3">
+                        <a class="btn btn-block btn-large blue" target="_blank" href="{{ step.napovednik }}">{{ 'Napovednik' | _ }}</a>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="row stage-files mt-3">
+                {% if step.stage_results.path %}
+                    <div class="col-md-3">
+                        <a class="btn btn-block btn-large blue" target="_blank" href="{{ step.stage_results.path }}#zoom=100">{{ 'Rezultati' | _ }}</a>
+                    </div>
+                {% endif %}
+                {% if step.highlights %}
+                    <div class="col-md-3">
+                        <a class="btn btn-block btn-large blue" target="_blank" href="{{ step.highlights }}">{{ 'Utrinki' | _ }}</a>
+                    </div>
+                {% endif %}
+                {% if step.behind %}
+                    <div class="col-md-3">
+                        <a class="btn btn-block btn-large blue" target="_blank" href="{{ step.behind }}">{{ 'Zakulisje' | _ }}</a>
+                    </div>
+                {% endif %}
+            </div>#}
+
+            <div class="etapa-dsc">
+                <p>{{ step.description | raw }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col map">
+            <div id="map">{{ 'Google maps zemljevid'|_ }}</div>
+        </div>
+    </div>
+</div>
+
+<a class="hidden" id="open-modal" href="#" data-toggle="modal" data-target="#obcina-01"></a>
+<div id="modal"></div>
+
+{% put styles %}
+    <style type="text/css">
+        .cities li a:hover {
+            cursor:pointer;
+        }
+    </style>
+{% endput %}
+
+{% put scripts %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPW1aZx0FhSpBaVgfrWR8FnQ_PkvpB7MU"></script>
+    <script type="text/javascript">
+        var locations = [];
+        var firstCity;
+        var lastCity;
+        var lastIndex;
+
+        {% for city in step.cities %}
+            locations.push({
+                'name': '{{ city.name }}',
+                'lat': '{{ city.lat }}',
+                'long': '{{ city.long }}'
+            });
+        {% endfor %}
+
+        var lastIndex = locations.length - 1;
+
+        firstCity = locations[0];
+        lastCity = locations[lastIndex];
+        locations.splice(0, 1);
+        locations.splice(-1,1);
+
+        function initialize() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: parseFloat(firstCity.lat), lng: parseFloat(firstCity.long)},
+                zoom: 8
+            });
+            //var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            var ctaLayer = new google.maps.KmlLayer({
+                //url: 'http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml',
+                url: '{{ step.route.path }}',
+                map: map
+            });
+
+            let firstMarker = new google.maps.Marker({
+                position: {lat: parseFloat(firstCity.lat), lng: parseFloat(firstCity.long)},
+                icon: '{{ "assets/images/map-icons/stage-start.png" | theme }}',
+                map: map,
+                optimized: false,
+                zIndex: 99999999,
+            });
+
+            let lastMarker = new google.maps.Marker({
+                position: {lat: parseFloat(lastCity.lat), lng: parseFloat(lastCity.long)},
+                icon: '{{ "assets/images/map-icons/stage-finish.png" | theme }}',
+                map: map,
+                optimized: false,
+                zIndex: 99999999,
+            });
+
+            createInfoWindow(firstMarker, firstCity.name);
+            createInfoWindow(lastMarker, lastCity.name);
+
+            locations.forEach(function(item) {
+                let marker = new google.maps.Marker({
+                    position: {lat: parseFloat(item.lat), lng: parseFloat(item.long)},
+                    icon: '{{ "assets/images/map-icons/poi.png" | theme }}',
+                    map: map,
+                    optimized: false,
+                    zIndex: 99999,
+                });
+
+                createInfoWindow(marker, item.name);
+            });
+        }
+
+        function createInfoWindow(marker, title, symbol)
+        {
+            var infowindow = new google.maps.InfoWindow({
+                content: "<div style='color: #00377b; font-size: 26px; font-weight: bold;'>" + title + "</div>"
+            });
+
+            marker.addListener('mouseover', function() {
+                infowindow.open(map, this);
+            });
+
+            // assuming you also want to hide the infowindow when user mouses-out
+            marker.addListener('mouseout', function() {
+                infowindow.close();
+            });
+        }
+
+        window.onLoad = initialize();
+    </script>
+{% endput %}

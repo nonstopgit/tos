@@ -1,0 +1,22 @@
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>{% if this.page.meta_title|length %}{{ this.page.meta_title }}{% else %}{{ this.page.title }}{% endif %}</title>
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="author" content="NONSTOP www.nonstop.si">
+    <link rel="shortcut icon" href="{{ 'assets/images/icons/favicon-16x16.png'|theme }}">
+
+    <link href="{{ [
+      'assets/vendor/bootstrap/css/bootstrap.min.css',
+      'assets/vendor/fontawesome/css/all.css',
+      'assets/vendor/animate.css/animate.min.css',
+      'assets/vendor/plyr/dist/plyr.css',
+      'assets/css/virtual.css'
+    ]|theme }}" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,800;1,600;1,800&display=swap" rel="stylesheet">
+
+    {% styles %}

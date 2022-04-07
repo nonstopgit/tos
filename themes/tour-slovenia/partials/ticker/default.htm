@@ -1,0 +1,50 @@
+[viewBag]
+==
+{% set article = __SELF__.ticker %}
+{% set latest = __SELF__.latest %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7">
+
+            <article class="article">
+                <h2>{{ article.created_at | date('m.d.Y H:i:s') }}</h2>
+
+                {% set image = article.image.path %}
+                <div class="embed-responsive embed-responsive-16by9 bg-img" style="background-size: cover;background-image: url({{ image }});"></div>
+
+                <div class="lead">{{ article.short | raw }}</div>
+
+                {{ article.description | raw }}
+
+                {% if article.gallery is not empty %}
+                    <div class="gallery">
+                        {% for item in article.gallery %}
+                            <div class="gallery-img"><a href="{{ item.getThumb(1200, 800) }}" style="background-image:url({{ item.path }});" rel="gallery" data-toggle="lightbox" data-gallery="example-gallery" data-type="image"></a></div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </article>
+
+        </div>
+    </div>
+</div>
+{% put scripts %}
+    <script src="https://tourofslovenia.si/plugins/custom/tof/assets/colorbox/jquery.colorbox-min.js"></script>
+    <script>
+        function initGallery()
+        {
+            $(".gallery").lightGallery({
+                download: false,
+                counter: false,
+                autoplay: false,
+                share: true,
+                actualSize: false,
+                thumbnail: false
+            });
+        }
+
+        initGallery();
+    </script>
+{% endput %}

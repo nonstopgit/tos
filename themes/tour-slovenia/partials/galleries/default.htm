@@ -1,0 +1,138 @@
+[viewBag]
+==
+{% set galleries = __SELF__.galleries %}
+{% set stages = __SELF__.stages %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ 'Galerija'|_ }}</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="btn-group">
+                <button class="btn btn-secondary btn-year active" data-year="2021">2021</button>
+                <button class="btn btn-secondary btn-year" data-year="2019">2019</button>
+                <button class="btn btn-secondary btn-year" data-year="2018">2018</button>
+                <button class="btn btn-secondary btn-year" data-year="2017">2017</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="stages">
+        {% if stages %}
+            {% partial '@stages' stages = stages %}
+        {% endif %}
+    </div>
+
+    <div id="js-images">
+        {% partial '@images' galleries = galleries %}
+    </div>
+
+    {#<a href="#" class="btn btn-secondary" id="show-more">
+        {{ 'Prikaži več'| _ }} +
+    </a>#}
+</div>
+{% put styles %}
+    <link href="{{ 'assets/vendor/lightgallery/dist/css/lightgallery.css'|theme }}" rel="stylesheet" />
+{% endput %}
+{% put scripts %}
+	<script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-pager.js/master/dist/lg-pager.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-zoom.js/master/dist/lg-zoom.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-hash.js/master/dist/lg-hash.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-share.js/master/dist/lg-share.js"></script>
+<script type="text/javascript">
+    let page = 2;
+    let year, stage;
+    $jsImages = $('#js-images');
+    $showMore = $('#show-more');
+    $(document).on('click', '#show-more, .btn-year, .btn-stage' , function(e) {
+        e.preventDefault();
+
+        let $that = $(this);
+
+        if ($.inArray('btn-year', e.target.classList) !== -1) {
+            year = $that.attr('data-year');
+            $('.btn-year').removeClass('active');
+            $that.addClass('active');
+            $jsImages.html('');
+            page = 1;
+        }
+
+        if ($.inArray('btn-stage', e.target.classList) !== -1) {
+            stage = $that.attr('data-stage');
+            $jsImages.html('');
+            page = 1;
+        }
+
+        $.request('galleries::onRun', {
+            data: {
+                page: page,
+                year: year,
+                stage: stage
+            },
+            success: function(data) {
+            this.success(data).done(function() {
+                success(data);
+                initGallery();
+                dataImage();
+            });
+        }});
+    });
+
+    function success(data) {
+        if (data) {
+            if (data.pagination) {
+                page = data.pagination;
+            } else {
+                $showMore.hide();
+            }
+
+            if (data.images) {
+                $('#js-images').append(data.images);
+            }
+
+            if (data.stages) {
+                $('#stages').html(data.stages);
+            }
+        }
+    }
+
+    /*function dataImage() {
+        $.each($('[data-img]'), function() {
+            var $that = $(this);
+            $that.css('background', 'url("' + $that.attr('data-img') + '") no-repeat center center').removeAttr('data-img');
+        });
+    }*/
+    
+    /*$(document).ready(function() {
+
+        lightGallery(document.getElementById('lg'), {
+		    thumbnail: true
+        });
+
+    });*/
+    function initGallery()
+    {
+        lightGallery(document.getElementById('lg'), {
+		    thumbnail: true
+        });
+    /*    $(".gallery").lightGallery({
+            download: false,
+            counter: false,
+            autoplay: false,
+            share: true,
+            actualSize: false,
+            thumbnail: false,
+        });*/
+    }
+
+    initGallery();
+</script>
+{% endput %}

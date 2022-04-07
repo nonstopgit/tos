@@ -1,0 +1,14 @@
+[viewBag]
+==
+<div class="gallery" id="lg">
+    {% for image in galleries %}
+        <div class="gallery-img" data-src="{{ image }}">
+            <a href="{{ image }}" style="background: url('{{ image }}') center center no-repeat; background-size: cover;"></a>
+            {#<a href="{{ image }}" data-img="{{ image }}"></a>#}
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-md-6">{{ 'Ni na voljo slik za to izbiro'|_ }}</div>
+        </div>
+    {% endfor %}
+</div>

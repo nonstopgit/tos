@@ -1,0 +1,37 @@
+title = "O dirki"
+url = "/o-dirki"
+layout = "default"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[viewBag]
+localeUrl[en] = "/about-race"
+==
+<div class="container-fluid">
+    		<div class="row">
+    			<div class="col-sm-6">
+
+                    <article class="article">
+                        <h2>{{ 'O dirki'|_ }}</h2>
+                        <img src="{{ 'assets/images/temp/Tour_of_Slovenia_Stage2_4219_160617_.JPG'|theme }}">
+                        {% content 'o-dirki' %}
+                    </article>
+    
+    			</div>
+    			<div class="col-sm-6">
+            <h2>{{ 'Kontakti'|_ }}</h2>
+            <div class="contacts">
+            <p><span>Organizacijski direktor dirke / Race director:</span> <br>
+<strong>Bogdan Fink</strong> <br><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:bogdan.fink@tourofslovenia.si">bogdan.fink@tourofslovenia.si</a></p>
+<p><span>Vodja pisarne / Head office:</span> <br>
+<strong>Srečko Glivar</strong> <br><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:office@tourofslovenia.si">office@tourofslovenia.si</a></p>
+<p><span>Odnosi z javnostmi / Media officer:</span> <br>
+<strong>Grega Stopar</strong> <br><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:media@tourofslovenia.si">media@tourofslovenia.si</a></p>
+            </div>
+            
+            <h2>{{ 'Zanimivosti'|_ }}</h2>
+                    {% content 'zanimivosti' %}
+    			</div>
+    		</div>
+    	</div>

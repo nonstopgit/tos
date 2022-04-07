@@ -1,0 +1,26 @@
+[viewBag]
+==
+<ul class="nav nav-tabs" id="sponsorsTabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ activeLocale }}/sponzorji" >{{ 'Sponzorji'|_ }}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/{{ activeLocale }}/partnerji" >{{ 'Partnerji etap'|_ }}</a>
+    </li>
+</ul>
+
+{% for city in cities %}
+    <h2>{{ city.stage }}. Etapa / Stage</h2>
+
+    <div class="row justify-content-center">
+        {% for item in city.items %}
+
+            <div class="col-sm-2 mb-2">
+                {{ item.name }}<br >
+                {% if item.symbol.path %}<img src="{{ item.symbol.path }}" style="width: 120px;" alt="{{ item.name }}">{% endif %}
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endfor %}

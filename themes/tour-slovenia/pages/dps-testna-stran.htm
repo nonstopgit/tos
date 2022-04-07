@@ -1,0 +1,29 @@
+title = "DPS Testna stran"
+url = "/dps-testna-stran-2021"
+layout = "home-2021"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[viewBag]
+localeUrl[en] = "/dps-testna-stran"
+==
+{% partial 'site/slider' %}
+{% partial 'site/etape' %}
+
+<main>
+    <div class="c">
+        <div class="c-left">
+            <div class="c-inn">
+                
+            </div>
+        </div>
+        <div class="c-right">
+            <div class="c-inn">
+                {% component 'instagramFeed' %}
+        </div>
+    </div>
+</main>
+
+{% partial 'site/utrinki' %}
+{% partial 'site/sponsors' %}

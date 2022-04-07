@@ -1,0 +1,19 @@
+{% set articles = __SELF__.articles %}
+{% set topArticle = __SELF__.topArticle %}
+{% import "macros/ellipsis.htm" as ellipsis %}
+
+<div class="col-md-12 sponsors mt-5">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2 text-center">
+            <a href="/{{ activeLocale }}/{{ 'novica' | _ | lower }}/{{ topArticle.id }}/{{ topArticle.slug }}" ><img src="{{ topArticle.image.path }}" alt="{{ topArticle.title }}"></a>
+        </div>
+
+        {% for article in articles %}
+            <div class="col-sm-2 text-center">
+                <a href="/{{ activeLocale }}/{{ 'novica' | _ | lower }}/{{ article.id }}/{{ article.slug }}" ><img src="{{ article.image.path }}" alt="{{ article.title }}"></a>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>

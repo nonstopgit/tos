@@ -1,0 +1,21 @@
+title = "Etapa"
+url = "/etapa/:id"
+layout = "default"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[stepDetail]
+id = "{{ :id }}"
+
+[viewBag]
+localeUrl[en] = "/stage/:id"
+==
+<?php
+function onStart()
+{
+    $this['id'] = $this->param('id');
+}
+?>
+==
+{% component 'stepDetail' %}

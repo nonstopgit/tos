@@ -1,0 +1,270 @@
+[viewBag]
+==
+{% put styles %}
+<style>
+.stages {
+    margin: 4em 0 0 0;
+}
+.stages div.stg {
+  font-size: 6rem;
+  font-weight: 800;
+  font-style: italic;
+  text-transform: lowercase;
+  color: #97d21f;
+  /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+  line-height: 16rem;
+}
+.stages div.num {
+  font-size: 16rem;
+  font-weight: 800;
+  font-style: italic;
+  color: #00377b;
+  /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+  line-height: 16rem;
+  margin-right: 2rem;  
+}
+.stages hr {
+  border: 10px solid #aaa;
+  /*border-radius: 5px;*/
+  margin-top: -6.5rem;
+  z-index: -1;
+  position: relative;
+  /*box-shadow: 0 0 64px #000;*/
+  opacity: .2;
+}
+
+.flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+.stages .basedata {
+    font-size: 2.4em;
+    font-weight: bold;
+    margin-top: -40px;
+}
+.stages .basedata .date {
+    color: #00377b;
+}
+.stages .basedata .dist {
+    color: #97d21f;
+}
+.stages .basedata i {
+    color: #a3a3a3;
+}
+.stages .basedata, .etapa-single, .elinks {
+    padding: 0 .5em;
+}
+.elinks {
+    margin-top: 0em;
+}
+.elinks a {
+    font-size: 1.8em;
+    display: inline-block;
+    padding: .4em .5em;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+.elinks a i {
+    color: #a3a3a3;
+    transition: all 0.2s ease-in-out;
+}
+.elinks a:hover, .elinks a:hover i {
+    background: #97d21f;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+.etapa-map {
+    margin-bottom: 6em;
+}
+
+.etapa-single {
+    float: none;
+    width: auto;
+}
+@media (max-width: 960px) {
+
+    .elinks a {
+        display: block;
+        transition: all 0.2s ease-in-out;
+    }
+    .elinks a i {
+        width: 1.2em;
+        text-align: right;
+        transition: all 0.2s ease-in-out;
+    }
+
+}
+@media (max-width: 784px) {
+
+    .stages div.stg {
+        font-size: 4rem;
+        font-weight: 800;
+        font-style: italic;
+        text-transform: lowercase;
+        color: #97d21f;
+        /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+        line-height: 12rem;
+    }
+    .stages div.num {
+        font-size: 12rem;
+        font-weight: 800;
+        font-style: italic;
+        color: #00377b;
+        /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+        line-height: 12rem;
+        margin-right: 1rem;  
+    }
+    .stages hr {
+        border: 8px solid #aaa;
+        border-radius: 4px;
+        margin-top: -4.5rem;
+        z-index: -1;
+        position: relative;
+        /*box-shadow: 0 0 64px #000;*/
+        opacity: .2;
+    }
+
+    .stages .basedata {
+        font-size: 2.0em;
+        font-weight: bold;        
+        margin-top: -40px;
+    }
+    .stages .basedata, .etapa-single, .elinks {
+        padding: 0 .2em;
+    }
+
+}
+
+@media (max-width: 584px) {
+
+    .stages div.stg {
+        font-size: 3.6rem;
+        font-weight: 800;
+        font-style: italic;
+        text-transform: lowercase;
+        color: #97d21f;
+        /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+        line-height: 10rem;
+    }
+    .stages div.num {
+        font-size: 8rem;
+        font-weight: 800;
+        font-style: italic;
+        color: #00377b;
+        /*text-shadow: 0 0 64px rgba(0,0,0,0.2);*/
+        line-height: 10rem;
+        margin-right: 1rem;  
+    }
+    .stages hr {
+        border: 8px solid #aaa;
+        border-radius: 4px;
+        margin-top: -4.5rem;
+        z-index: -1;
+        position: relative;
+        /*box-shadow: 0 0 64px #000;*/
+        opacity: .2;
+    }
+
+    .stages .basedata {
+        font-size: 1.6em;
+        font-weight: bold;
+        margin-top: -40px;
+    }
+    .stages .basedata, .etapa-single, .elinks {
+        padding: 0;
+    }
+
+}
+</style>
+{% endput %}
+
+{% for step in __SELF__.steps %}
+    <div class="stages">
+        <div class="d-flex">
+            <div class="flex-grow-1 dots"></div>
+            <div class="stg">{{ 'etapa'|_ }}</div>
+            <div class="num float-right">{{ step.name }}</div>
+        </div>
+        <hr>
+        <div class="container-fluid">
+            <div class="row basedata">
+                <div class="col-5 date"><i class="far fa-calendar-alt"></i> {{ step.time_start|date('d.m.Y') }}</div>
+                <div class="col-5 dist"><i class="fas fa-route"></i> {{ step.distance }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="elinks">
+            <a href="{{ 'stage.url'|_ }}/{{ step.id }}"><i class="fas fa-info-circle"></i> {{ 'Info'|_ }}</a>
+            {% if step.step_profile.path is not empty %}
+                <a href="{{ step.step_profile.path }}" target="_blank"><i class="fas fa-mountain"></i> {{ 'Profil etape'|_ }}</a>
+            {% endif %}
+            {% if step.step_timeline.path is not empty %}
+                <a href="{{ step.step_timeline.path }}" target="_blank"><i class="fas fa-stopwatch"></i> {{ 'Časovnica'|_ }}</a>
+            {% endif %}
+            {% if step.napovednik is not empty %}
+                <a href="{{ step.napovednik }}" target="_blank"><i class="fas fa-play-circle"></i> {{ 'Video'|_ }}</a>
+            {% endif %}
+            {% if step.step_3d.path is not empty %}
+                <a href="{{ step.step_3d.path }}" target="_blank"><i class="fas fa-road"></i> {{ '3D Video'|_ }}</a>
+            {% endif %}
+            {% if step.tracking.path is not empty %}
+                <a href="{{ step.tracking }}" target="_blank"><i class="fab fa-line"></i> {{ 'Sledenje v živo' |_ }}</a>
+            {% endif %}
+        </div>        
+    </div>    
+
+    <div class="container-fluid clearfix">
+        <div class="etapa-single">
+            <a href="{{ 'stage.url'|_ }}/{{ step.id }}">
+                <div class="etapa-map">
+                    <div class="etapa-start" data-img="{{ step.image_start.path }}">
+                        <h2><img src="{{ 'assets/images/icons/stage-start.png'|theme }}"> {{ step.start }}</h2>
+                    </div>
+                    <div class="etapa-end" data-img="{{ step.image_end.path }}">
+                        <h2><img src="{{ 'assets/images/icons/stage-finish.png'|theme }}"> {{ step.end }}</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endfor %}
+{#% for step in __SELF__.steps %}
+    <div class="etapa-single">
+        <div class="etapa-header">
+            <div class="e-left">
+                <span class="nmr">{{ step.name }}.</span>
+                <h3>{{ 'Etapa'|_ }}</h3>
+                <span class="inf">{{ step.time_start|date('d.m.Y') }}</span>
+            </div>
+            <div class="e-right">
+                <div class="elinks">
+                    <a href="{{ 'stage.url'|_ }}/{{ step.id }}">{{ 'Trasa'|_ }}</a>
+                    {% if step.step_profile.path is not empty %}
+                        <a href="{{ step.step_profile.path }}" target="_blank">{{ 'Profil etape'|_ }}</a>
+                    {% endif %}
+                    {% if step.step_timeline.path is not empty %}
+                        <a href="{{ step.step_timeline.path }}" target="_blank">{{ 'Časovnica'|_ }}</a>
+                    {% endif %}
+                    {% if step.napovednik is not empty %}
+                        <a href="{{ step.napovednik }}" target="_blank">{{ 'Video'|_ }}</a>
+                    {% endif %}
+                    {% if step.step_3d.path is not empty %}
+                        <a href="{{ step.step_3d.path }}" target="_blank">{{ '3D Video'|_ }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <a href="{{ 'stage.url'|_ }}/{{ step.id }}">
+            <div class="etapa-map">
+                <div class="etapa-start" data-img="{{ step.image_start.path }}">
+                    <h2>{{ step.start }}</h2>
+                </div>
+                <div class="etapa-end" data-img="{{ step.image_end.path }}">
+                    <h2>{{ step.end }}</h2>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endfor %#}

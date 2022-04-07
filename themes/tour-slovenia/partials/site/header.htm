@@ -1,0 +1,45 @@
+[viewBag]
+==
+<header>
+    <div class="top-green-line">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-8">
+                    <strong>{{ '25. dirka po Sloveniji'|_ }}</strong> {{ '13. junij - 17. junij'|_ }}
+                </div>
+                <div class="col-4 text-right">
+                    {% component 'localePicker' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hrow">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    <a href="/"><img src="{{ 'assets/images/brand/logo-tourofslovenia-l.webp'|theme }}" class="logo-img" alt="Tour of Slovenia"></a>
+                </div>
+
+                <div class="col-sm-8 text-right">
+                    <div class="menu">
+                        <a href="#" class="burger"><span></span><span></span><span></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mnu">
+        <!-- NAV -->
+        <nav>
+            <ul>
+                {% for item in staticMenu.menuItems if not item.viewBag.isHidden %}
+                    <li><a class="item" {% if item.viewBag.isExternal %}target="_blank"{% endif %} href="{{ item.url }}">{{ item.title }}</a></li>
+                {% endfor %}
+                <!--li><a href="/sl/trgovina/" class="item">Trgovina</a></li-->
+            </ul>
+        </nav>
+        <!-- /NAV -->
+    </div>
+</header>

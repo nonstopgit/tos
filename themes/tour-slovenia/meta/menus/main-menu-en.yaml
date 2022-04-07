@@ -1,0 +1,147 @@
+name: main-menu
+items:
+    -
+        title: Home
+        nesting: ''
+        type: url
+        url: /en
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Stages
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: etape
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+            featured: '0'
+    -
+        title: Teams
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: ekipe
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+            featured: '0'
+    -
+        title: Brochure
+        nesting: ''
+        type: url
+        url: 'https://tourofslovenia.si/storage/app/media/2021/tour-of-slovenia-2021-v10.pdf'
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '1'
+            featured: '0'
+    -
+        title: 'About the race'
+        nesting: ''
+        type: url
+        url: /en/about-race
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: History
+        nesting: '0'
+        type: static-page
+        url: ''
+        code: ''
+        reference: zgodovina-novo
+        cmsPage: ''
+        replace: '0'
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+            featured: '0'
+    -
+        title: Press
+        nesting: ''
+        type: url
+        url: /en/press
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Sponsors
+        nesting: ''
+        type: url
+        url: /en/sponsors
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Gallery
+        type: url
+        url: /en/gallery
+        code: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+            featured: '0'
+    -
+        title: News
+        nesting: ''
+        type: url
+        url: /en/news
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Slovenia by bike'
+        nesting: ''
+        type: url
+        url: 'https://www.slovenia.info/en/stories/tour-of-slovenia-2021'
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '1'
+            featured: '0'

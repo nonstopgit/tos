@@ -1,0 +1,9 @@
+{% set slides = __SELF__.slides %}
+
+{% for slide in slides %}
+    <div class="slide" data-img="{{ slide.slide.path }}">
+        <div class="slide-text">
+            <h1><img src="{{ 'assets/images/temp/fight-for-green-l.png'|theme }}" alt=""></h1>
+        </div>
+    </div>
+{% endfor %}

@@ -1,0 +1,30 @@
+[viewBag]
+==
+{% set gallery = __SELF__.gallery %}
+
+<div class="utrinki">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>{{ 'Utrinki 2019'|_ }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="slider utrinek-slider">
+        {% for image in gallery.images %}
+            <div class="slide">
+                <a href="{{ image.path }}" class="gallery">
+                    <div class="img" data-img="{{ image.path }}"></div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% put scripts %}
+    <script>
+        $(document).ready(function() {
+            $('a.gallery').colorbox({rel:'gallery', width:"90%", height:"90%"});
+        })
+    </script>
+{% endput %}

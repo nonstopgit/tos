@@ -1,0 +1,35 @@
+[viewBag]
+==
+<ul class="nav nav-tabs" id="sponsorsTabs" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" href="/{{ activeLocale }}/sponzorji" >{{ 'Sponzorji'|_ }}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/{{ activeLocale }}/partnerji" >{{ 'Partnerji etap'|_ }}</a>
+    </li>
+</ul>
+
+{% for sponsor in sponsors %}
+    <h2>{{ sponsor.name }}</h2>
+
+    <div class="row justify-content-center">
+        {% for item in sponsor.sponsors %}
+
+        {% if item.image %}
+        <div class="col-sm-3 item-sponsor">
+            <a href="{{ item.url }}" target="_blank">
+                <img src="{{ item.image|media }}" alt="{{ item.descriptiongit  }}">
+            </a>
+        </div>
+
+        {% if item.break %}
+    </div>
+    <div class="row justify-content-center">
+        {% endif %}
+        {% else %}
+        {{ item.description }},
+        {% endif %}
+
+        {% endfor %}
+    </div>
+{% endfor %}

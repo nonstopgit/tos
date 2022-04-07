@@ -1,0 +1,286 @@
+[viewBag]
+snippetCode = "zgodovina"
+snippetName = "Zgodovina"
+==
+{% put styles %}
+    <style>
+        .nav {
+            display: none;
+        }
+        .year {
+            margin: 2em 0 1em 0;
+            font-size: 1.4em;
+        }
+        .dropdown, .dropdown button, .dropdown .dropdown-menu {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        .btn {
+            padding: .2em .5em;
+        }
+        .btn-secondary {
+            background-color: #00377b;
+        }
+        h2, h3 {
+            color: #97d21f;
+            font-weight: bold;
+        }
+        h2 {
+            font-size: 2.8em;
+            margin-bottom: 1em;
+        }
+        .basedata {
+            font-size: 1.2em;
+        }
+        .basedata p {
+            font-size: 2.4em;
+            color: #00377b;
+            font-weight: bold;
+        }
+        .racewinners {
+            margin-bottom: 2em;
+        }
+        .results h3 {
+            text-align: center;
+        }
+        .cyclistname span {
+            font-weight: normal;
+            color: #000;
+        }
+    </style>
+{% endput %}
+{% put scripts %}
+    <script>
+    $(function(){
+        $(".dropdown-menu").on('click', 'a', function(){
+            $(".btn:first-child").text($(this).text() + ' ');
+            $(".btn:first-child").val($(this).text() + ' ');
+            $('#nav-' + $(this).text() + '-tab').tab('show')
+        });
+    });
+    </script>
+{% endput %}
+<div class="container-fluid">
+    <h1>{{ 'Zgodovina'|_ }}</h1>
+
+    <div class="year text-center">
+        {{ 'izberi_leto'|_ }}
+        <div class="dropdown text-center">        
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ history[0].year }}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% for year in history %}
+                    <a class="dropdown-item" href="#nav-{{ year.year }}">{{ year.year }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    <ul class="nav nav-tabs js-tabs" id="myTab" role="tablist">
+        {% for year in history %}
+            {% if loop.index == 1 %}
+                {% set active = {' active': 'true'} %}
+            {% else %}
+                {% set active = {'': 'false'} %}
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link{{ active[0] }}" id="nav-{{ year.year }}-tab" data-toggle="tab" href="#nav-{{ year.year }}" role="tab" aria-controls="nav-{{ year.year }}" aria-selected="{{ active[1] }}">{{ year.year }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div class="tab-content" id="nav-tabContent">
+        {% for year in history %}
+            {% if loop.index == 1 %}
+                {% set active = ' active' %}
+                {% set show = ' show' %}
+            {% else %}
+                {% set active = '' %}
+                {% set show = '' %}
+            {% endif %}
+            <div class="tab-pane fade{{ show }}{{ active }}" id="nav-{{ year.year }}" role="tabpanel" aria-labelledby="nav-{{ year.year }}-tab">
+                <div class="text-center">
+                    <h2>{{ year.number }}. {{ 'dirka-po-sloveniji'|_ }}</h2>
+                </div>
+                <div class="row basedata">
+                    <div class="col-6 col-md-3 text-center">
+                        {{ 'dolzina'|_ }} km:
+                        <p>{{ year.length }}</p>
+                    </div>
+                    <div class="col-6 col-md-3 text-center">
+                        {{ 'kolesarji-start'|_ }}:
+                        <p>{{ year.cyclists_start }}</p>
+                    </div>
+                    <div class="col-6 col-md-3 text-center">
+                        {{ 'kolesarji-cilj'|_ }}:
+                        <p>{{ year.cyclists_finish }}</p>
+                    </div>
+                    <div class="col-6 col-md-3 text-center">
+                        {{ 'povprecna-hitrost'|_ }} km/h:
+                        <p>{{ year.average_speed }}</p>
+                    </div>
+                </div>
+                <div class="row results">
+                    <div class="col-12 col-md-6">
+
+                        <h3>{{ 'skupna-razvrstitev'|_ }}</h3>
+                        <div class="content">{{ year.standings|raw }}</div>
+
+                        {#<table class="racewinners" align="center">
+                            <tbody>
+                                <tr>
+                                    <td class="raceyear">1.</td>
+                                    <td class="cyclistname">Diego Ulissi</td>
+                                    <td class="teamname">UAE-Team Emirates</td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">2.</td>
+                                    <td class="cyclistname">Giovanni Visconti</td>
+                                    <td class="teamname">Neri Sottoli - Selle Italia</td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">3.</td>
+                                    <td class="cyclistname">Aleksandr Vlasov</td>
+                                    <td class="teamname">Gazprom-RusVelo </td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">4.</td>
+                                    <td class="cyclistname">Tadej Pogačar</td>
+                                    <td class="teamname">UAE-Team Emirates</td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">5.</td>
+                                    <td class="cyclistname">Andrea Vendrame</td>
+                                    <td class="teamname">Androni Giocattoli - Sidermec</td>
+                                </tr>
+                            </tbody>
+                        </table>#}
+
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h3>{{ 'majice'|_ }}</h3>
+                        <div class="content">{{ year.shirts|raw }}</div>
+
+                        {#<table class="racewinners" align="center">
+                            <tbody>
+                                <tr>
+                                    <td class="raceyear">Po točkah</td>
+                                    <td class="cyclistname">Luka Mezgec</td>
+                                    <td class="teamname">Mitchelton-Scott</td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">Gorski cilji</td>
+                                    <td class="cyclistname">Aleksandr Vlasov</td>
+                                    <td class="teamname">Gazprom-RusVelo</td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">U23</td>
+                                    <td class="cyclistname">Tadej Pogačar</td>
+                                    <td class="teamname">UAE-Team Emirates</td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">Ekipno</td>
+                                    <td class="cyclistname">UAE-Team Emirates</td>
+                                    <td class="teamname"></td>
+                                </tr>
+                            </tbody>
+                        </table>#}
+
+                    </div>
+                </div>
+                <div class="row results">
+                    <div class="col">
+                        <h3>{{ 'zmagovalci-etap'|_ }}</h3>
+                        <div class="content">{{ year.stage_winners|raw }}</div>
+
+                        {#<table class="stagewinners" align="center">
+                            <tbody>
+                                <tr>
+                                    <td class="raceyear">1. etapa</td>
+                                    <td class="stageroute">Ljubljan - Rogaška Slatina</td>
+                                    <td>171 km</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="teamname text-right">Zmagovalec etape:</td>
+                                    <td class="cyclistname">Pascal Ackermann</td>
+                                </tr>
+                                <tr class="line">
+                                    <td></td>
+                                    <td class="teamname text-right">Rumena majica:</td>
+                                    <td class="cyclistname">Pascal Ackermann</td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">2. etapa</td>
+                                    <td class="stageroute">Maribor - Celje</td>
+                                    <td>146 km</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="teamname text-right">Zmagovalec etape:</td>
+                                    <td class="cyclistname">Luka Mezgec</td>
+                                </tr>
+                                <tr class="line">
+                                    <td></td>
+                                    <td class="teamname text-right">Rumena majica:</td>
+                                    <td class="cyclistname">Luka Mezgec</td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">3. etapa</td>
+                                    <td class="stageroute">Žalec - Idrija</td>
+                                    <td>169 km</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="teamname text-right">Zmagovalec etape:</td>
+                                    <td class="cyclistname">Diego Ulissi</td>
+                                </tr>
+                                <tr class="line">
+                                    <td></td>
+                                    <td class="teamname text-right">Rumena majica:</td>
+                                    <td class="cyclistname">Diego Ulissi</td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">4. etapa</td>
+                                    <td class="stageroute">Nova gorica - Ajdovščina</td>
+                                    <td>153 km</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="teamname text-right">Zmagovalec etape:</td>
+                                    <td class="cyclistname">Giovanni Visconti</td>
+                                </tr>
+                                <tr class="line">
+                                    <td></td>
+                                    <td class="teamname text-right">Rumena majica:</td>
+                                    <td class="cyclistname">Diego Ulissi</td>
+                                </tr>
+                                <tr>
+                                    <td class="raceyear">5. etapa</td>
+                                    <td class="stageroute">Trebnje - Novo mesto</td>
+                                    <td>167 km</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td class="teamname text-right">Zmagovalec etape:</td>
+                                    <td class="cyclistname">Giacomo Nizzolo</td>
+                                </tr>
+                                <tr class="line">
+                                    <td></td>
+                                    <td class="teamname text-right">Rumena majica:</td>
+                                    <td class="cyclistname"></td>
+                                </tr>
+                            </tbody>
+                        </table>#}
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <br><br><br>
+
+    {#% content 'zgodovina' %#}
+</div>

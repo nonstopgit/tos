@@ -1,0 +1,90 @@
+{% for stage in stages %}
+
+<div id="stage{{ stage.stage_number }}" class="stagetag"></div>
+<div class="d-flex">
+    <div class="flex-grow-1 dots"></div>
+    <div class="stg">{{ 'etapa'|_ }}</div>
+    <div class="num">{{ stage.stage_number }}</div>
+</div>
+<hr>
+<h2>{{ stage.stage_title_start }}<br>
+<div><i class="fas fa-arrow-right"></i> {{ stage.stage_title_end }}</div></h2>
+<div class="row">
+    <div class="col-12 col-xl-3">
+    <!-- base data -->
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-xl-12">
+                <dl class="row basedata">
+                    <dt class="col-3 text-end"><i class="far fa-clock"></i></dt>
+                    <dd class="col-9">{{ stage.stage_info_hour }}</dd>
+            
+                    <dt class="col-3 text-end"><i class="fas fa-route"></i></dt>
+                    <dd class="col-9">{{ stage.stage_info_length }}</dd>
+            
+                    <dt class="col-3 text-end"><i class="fas fa-mountain"></i></dt>
+                    <dd class="col-9">{{ stage.stage_info_elevation }}</dd>
+                </dl>
+            </div>
+            <div class="col-12 col-md-6 col-xl-12 rouvy">
+                <img src="{{ 'assets/images/virtual/rouvy-logo.png'|theme }}" style="width: 70%;">
+                <br><br>
+                <a href="{{ stage.stage_rouvy_route }}" target="_blank">{{ 'trasa'|_ }}</a><br>
+                <a href="{{ stage.stage_rouvy_ride }}" target="_blank">{{ 'virtual.registration.ride'|_ }}</a><br>
+                <a href="{{ stage.stage_rouvy_race }}" target="_blank">{{ 'virtual.registration.race'|_ }}</a><br>
+            </div>
+        </div>    
+
+    </div>
+    <div class="col-12 col-xl-9 stagedata">
+    <!-- dates and content -->
+    <dl class="row dates">
+        <dt class="col-12 col-lg-3 text-lg-end ride">{{ stage.stage_rid_datee }}</dt>
+        <dd class="col-12 col-lg-9 ride">{{ stage.stage_ride_title }}</dd>
+    </dl>
+    <dl class="row dates">
+        <dt class="col-12 col-lg-3 text-lg-end race">{{ stage.stage_race_date }}</dt>
+        <dd class="col-12 col-lg-9 race">{{ stage.stage_race_title }}</dd>
+    </dl>
+    <!-- rider and description -->
+    <div class="row">
+        <div class="col-12 col-sm-4 col-lg-3 text-lg-end">
+            <img src="{{ stage.stage_rider_image|media }}" class="img-fluid">
+            {{ stage.stage_rider_name }}
+        </div>
+        <div class="col-12 col-sm-8 col-lg-9">
+            {{ stage.stage_description|raw }}
+        </div>
+    </div>
+    <!-- sponsor -->
+    <div class="row">
+        <div class="col-12 col-lg-3 text-lg-end"></div>
+        <div class="col-12 col-lg-6">
+            {% if stage.stage_sponsor|length %}
+            <p>
+                {{ 'virtual.stage.sponsor'|_ }}<br>
+                <img src="{{ stage.stage_sponsor|media }}" class="img-fluid">
+            </p>
+            {% endif %}
+        </div>
+        <div class="col-12 col-lg-3"></div>
+    </div>
+    <!-- map and video -->
+    <br>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <h3>{{ 'trasa'|_ }}</h3>
+            <a href="{{ stage.stage_rouvy_route }}" target="_blank"><img src="{{ stage.stage_route|media }}" class="img-fluid"></a>
+        </div>
+        <div class="col-12 col-md-6">
+            <h3>Video</h3>
+            <video controls="" controlslist="nodownload" width="100%" webkit-playsinline="true" playsinline="true">
+                <source src="{{ stage.stage_video }}">  
+                Your browser doesn't support this video, please try using another internet browser.
+            </video>
+        </div>
+    </div>
+    </div>
+</div>
+
+{% endfor %}

@@ -1,0 +1,47 @@
+[viewBag]
+==
+{% import "macros/active-stage.htm" as myMacros %}
+
+<div class="etape-menu">
+    {% for step in __SELF__.steps %}
+        <div class="etm {% if myMacros.activeStage(step)|trim == "true" %}active{% endif %}">
+            <span class="nmr">{{ step.name }}.</span>
+            <div class="etmc">
+                <a href="/{{ activeLocale }}/{{ 'etapa'|_|lower }}/{{ step.id }}">
+                    <h4>{{ 'ETAPA'|_ }}</h4>
+                    <p>{{ step.start }}<br/>
+                        {{ step.end }}
+                    </p>
+                    <small>{{ step.time_start | date('d.m.Y') }} / <strong>{{ step.distance }}</strong></small>
+                </a>
+            </div>
+            <div class="drop">
+                <ul>
+                    {% if step.step_profile.path is not empty %}<li><a target="_blank" href="{{ step.step_profile.path }}#zoom=100">{{ 'Profil etape'|_ }}</a></li>{% endif %}
+                    {% if step.step_timeline.path is not empty %}<li><a target="_blank" href="{{ step.step_timeline.path }}#zoom=100">{{ 'Časovnica etape'|_ }}</a></li>{% endif %}
+                    {% if step.step_3d.path is not empty %}<li><a target="_blank" href="{{ step.step_3d.path }}">{{ '3D predstavitev etape' |_ }}</a></li>{% endif %}
+                    {% if step.napovednik.path is not empty %}<li><a target="_blank" href="{{ step.napovednik }}">{{ 'Napovednik' |_ }}</a></li>{% endif %}                        
+                    {% if myMacros.activeStage(step)|trim == "true" %}
+                        <li><a href="/{{ activeLocale }}/tracking">{{ 'Sledenje v živo' |_ }}</a></li>
+                        <li><a href="/{{ activeLocale }}/rezultati">{{ 'Rezultati' |_ }}</a></li>
+                        <li><a href="/{{ activeLocale }}/live/{{ step.id }}">{{ 'Novice iz etape' |_ }}</a></li>
+                    {% elseif myMacros.afterStage(step)|trim == "true" %}
+                        {#% if step.tracking %}
+                            <li><a target="_blank" href="{{ step.tracking }}">{{ 'Sledenje v živo' |_ }}</a></li>
+                        {% endif %#}
+                        {% if step.stage_results.path %}
+                            <li><a target="_blank" href="{{ step.stage_results.path }}#zoom=100">{{ 'Rezultati' |_ }}</a></li>
+                        {% endif %}
+                        {% if step.highlights %}
+                            <li><a target="_blank" href="{{ step.highlights }}">{{ 'Utrinki' |_ }}</a></li>
+                        {% endif %}
+                        {% if step.behind %}
+                            <li><a target="_blank" href="{{ step.behind }}">{{ 'Zakulisje' |_ }}</a></li>
+                        {% endif %}
+                        {# <li><a target="_blank" href="/{{ activeLocale }}/live/{{ step.id }}">{{ 'Novice iz etape' |_ }}</a></li>#}
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+</div>

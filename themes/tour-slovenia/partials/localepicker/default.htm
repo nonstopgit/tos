@@ -1,0 +1,3 @@
+{% for code, name in locales if code != activeLocale %}
+    <a href="/{{ code }}" >{{ name }}</a>
+{% endfor %}

@@ -1,0 +1,136 @@
+.obcine {
+    padding: 60px;
+}
+
+#genericForm_forms_flash .alert-danger {
+    background: rgba(255, 0,0,0.4);
+    border: 1px red;
+    color: white;
+    padding: 20px;
+    margin-bottom: 17px;
+}
+
+#genericForm_forms_flash .alert h4 {
+    color: white;
+}
+
+#genericForm_forms_flash .alert-success {
+    background: rgba(0, 255,0,0.4);
+    border: 1px red;
+    color: white;
+    padding: 20px;
+    margin-bottom: 17px;
+}
+
+#genericForm_forms_flash .alert-success p {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.blue {
+    background: #00377b;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.blue:active,
+.blue:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.press-centers div {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.press-centers div strong {
+    display: block;
+}
+
+.patronage {
+    color: #00377b;
+    font-size: 24px;
+    line-height: 38px;
+    font-style: italic;
+}
+
+.etape-menu .etm.active {
+    background: #97d21f;
+    color: #00377b;
+}
+
+.logo-img {
+  height: 88px;
+  width: auto !important;
+}
+.scrollh .logo-img {
+  height: 44px;
+}
+.burger {
+  margin-top: 16px;
+}
+.scrollh .burger {
+  margin-top: 14px;
+}
+.single-item .slick-slide h1 {
+  bottom: 150px;
+}
+.etape-menu .etm .drop {
+  border-top: 2px solid #ffffff;
+  margin-top: 20px;
+}
+.scrollh .top-green-line {
+  font-size: 5px;
+}
+
+
+@media (max-width: 960px){
+  .logo-img {
+    height: 74px;
+  }
+  .scrollh .logo-img {
+    height: 64px;
+  }
+  .burger {
+    margin-top: 9px;
+  }
+  .scrollh .burger {
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 767px) {
+    .blue {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .stage-files .btn {
+        margin-bottom: 10px;
+    }
+  
+  header .hrow {
+    padding-top: 22px;
+  }
+  .hrow .row > div:nth-child(1) {
+    flex: 75%;
+  }
+  .single-item .slick-slide h1 {
+    bottom: auto;
+  }
+
+  .logo-img,
+  .scrollh .logo-img {
+    height: 48px;
+  }
+  .burger,
+  .scrollh .burger {
+    margin-top: 0;
+  }
+
+
+}
+

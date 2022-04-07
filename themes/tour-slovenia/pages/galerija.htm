@@ -1,0 +1,15 @@
+title = "Galerija"
+url = "/galerija"
+layout = "default"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[viewBag]
+localeUrl[en] = "/gallery"
+localeTitle[en] = "Gallery"
+
+[galleries]
+perPage = 120
+==
+{% component 'galleries' %}

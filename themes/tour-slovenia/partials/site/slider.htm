@@ -1,0 +1,18 @@
+[viewBag]
+==
+<div class="slider-wrap">
+    <div class="slider single-item">
+        {% component 'slider' %}
+    </div>
+
+    {% if date("now") < date("2019-06-23 10:50:01") %}
+        <div class="counter">
+            <div>
+                <strong id="countdown-days"></strong> {{ 'dni'|_ }} /
+                <strong id="countdown-hours"></strong> {{ 'ur'|_ }} /
+                <strong id="countdown-minutes"></strong> {{ 'minut'|_ }}
+                <p>{{ 'do.zacetka.etape'|_ }}</p>
+            </div>
+        </div>
+    {% endif %}
+</div>

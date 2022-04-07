@@ -1,0 +1,61 @@
+[staticPage]
+useContent = 1
+default = 1
+
+[localePicker]
+forceUrl = 1
+
+[staticMenuMultilingual staticMenu]
+code = "main-menu"
+==
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags always come first -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+        <title>{{ this.page.title }}</title>
+        <meta name="description" content="{{ this.page.meta_description }}">
+        <meta name="title" content="{{ this.page.meta_title }}">
+        <meta name="author" content="NONSTOP www.nonstop.si">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+        <!--Bootstrap CSS -->
+        <link href="{{ [
+            'assets/css/style.css',
+            'assets/css/extra.css',
+            'assets/vendor/fontawesome/css/all.css',
+            'assets/vendor/animate.css/animate.min.css',
+            'assets/vendor/plyr/dist/plyr.css'
+          ]|theme }}" rel="stylesheet">
+        {#<link rel="stylesheet" href="{{ 'assets/css/style.css'|theme }}?v=3.2.0">
+        <link rel="stylesheet" href="{{ 'assets/css/extra.css'|theme }}?v=4.1">#}
+        {% styles %}
+        <link rel="shortcut icon" href="{{ 'assets/images/icons/favicon-16x16.png'|theme }}">
+    </head>
+    <body>
+        {% partial 'site/header' %}
+
+        <main class="page page-{{ this.page.id }}">
+            {% page %}
+        </main>
+
+        {% partial 'site/footer' %}
+
+        <!-- Javascript -->
+        <script src="{{ 'assets/js/app.js'|theme }}"></script>
+        <script src="{{ 'assets/js/slick.min.js'|theme }}"></script>
+        <script src="{{ 'assets/js/infinite-scroll.js'|theme }}"></script>
+        <script src="{{ 'assets/js/custom.js?v=2'|theme }}"></script>
+
+        <script src="/modules/system/assets/js/framework.js"></script>
+        <script src="/modules/system/assets/js/framework.extras.js"></script>
+
+        {% scripts %}
+
+        {% partial 'site/ga' %}
+    </body>
+</html>

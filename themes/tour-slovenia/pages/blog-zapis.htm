@@ -1,0 +1,15 @@
+title = "Blog zapis"
+url = "/po-sloveniji-s-kolesom/:id/:slug"
+layout = "default"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[blog]
+slug = "{{ :slug }}"
+id = "{{ :id }}"
+
+[viewBag]
+localeUrl[en] = "/slovenia-by-bike/:id/:slug"
+==
+{% component 'blog' %}

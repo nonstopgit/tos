@@ -1,0 +1,17 @@
+title = "Live"
+url = "/live/:stage?"
+layout = "default"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[viewBag]
+localeUrl[en] = "/live/:stage?"
+
+[tickerList]
+perPage = 10
+itemPage = "ticker"
+layout = "default"
+stage = "{{ :stage }}"
+==
+{% component 'tickerList' %}

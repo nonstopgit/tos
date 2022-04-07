@@ -1,0 +1,96 @@
+[viewBag]
+==
+<div class="col-sm-2-5 winner">
+
+    {#% if '/dps-testna-stran-2021' in this.page.url %#}
+         {% component 'tickerList' %}
+        <div class="clearfix"></div>
+    {#% endif %#}
+    
+    {% partial 'site/majice' %}
+    <div class="clearfix"></div>
+
+    <h2>{{ 'Zadnjih 10 zmagovalcev'|_ }} <!-- Last 10 winners --></h2>
+    <table>
+        <tbody>
+        <tr>
+            <td valign="top">2021</td>
+            <td valign="top">
+                <p><strong>Tadej Pogačar</strong> (SLO)</p>
+               UAE-Team Emirates
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">2019</td>
+            <td valign="top">
+                <p><strong>Diego Ulissi</strong> (ITA)</p>
+               UAE-Team Emirates
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">2018</td>
+            <td valign="top">
+                <p><strong>Primož Roglič</strong> (SLO)</p>
+                LOTTO NL JUMBO
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">2017</td>
+            <td valign="top">
+                <p><strong>Rafal Majka</strong> (POL)</p>
+                BORA HANSGROHE
+            </td>
+        </tr>
+
+        <tr>
+            <td valign="top">2016</td>
+            <td valign="top">
+                <p><strong>Rein Taaramae</strong> (EST)</p>
+                KATUSHA
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">2015</td>
+            <td valign="top">
+                <p><strong>Primož Roglič</strong> (SLO)</p>ADRIA MOBIL</td>
+        </tr>
+        <tr>
+            <td valign="top">2014</td>
+            <td valign="top">
+                <p><strong>Tiago Machado</strong> (POR)</p>NETAP ENDURA</td>
+        </tr>
+        <tr>
+            <td valign="top">2013</td>
+            <td valign="top">
+                <p><strong>Radoslav Rogina</strong>  (CRO)</p>ADRIA MOBIL</td>
+        </tr>
+        <tr>
+            <td valign="top">2012</td>
+            <td valign="top">
+                <p><strong>Janez Brajkovič</strong> (SLO)</p>ASTANA</td>
+        </tr>
+        <tr>
+            <td valign="top">2011</td>
+            <td valign="top">
+                <p><strong>Diego Ulissi</strong> (ITA)</p>LAMPRE ISD</td>
+        </tr>
+        <!--tr>
+            <td valign="top">2010</td>
+            <td valign="top">
+                <p><strong>Vincenzo Nibali</strong> (ITA)</p>LIQUIGAS</td>
+        </tr>
+        <tr>
+            <td valign="top">2009</td>
+            <td valign="top">
+                <p><strong>Jakob Fuglsang</strong> (DEN)</p>SAXO BANK</td>
+        </tr>
+        <tr>
+            <td valign="top">2008</td>
+            <td valign="top">
+                <p><strong>Jure Golčer</strong> (SLO)</p>LPR BRAKES</td>
+        </tr-->
+
+        </tbody>
+    </table>
+
+</div>

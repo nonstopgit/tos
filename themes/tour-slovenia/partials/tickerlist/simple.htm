@@ -1,0 +1,24 @@
+[viewBag]
+==
+{% set articles = __SELF__.tickers %}
+{% import "macros/ellipsis.htm" as ellipsis %}
+
+{% if articles|length > 0 %}
+    <h2>{{ 'V živo'|_ }}</h2>
+    <article class="article">
+        <div class="row">
+            <div class="col-sm-12 ">
+                {% for article in articles %}
+                    <div class="ticker">
+                        <small>{{ article.created_at|date('d.m.Y') }}{#{ article.created_at|date('d.m.Y H:i:s') }#}</small>
+                        {{ article.short | raw }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </article>
+
+    <div class="col-sm-8 offset-sm-4">
+        <p class="a-archive"><a href="/{{ activeLocale }}/{{ 'live' | _ | lower }}{#/5#}">{{ 'Prikaži več'|_ }} <!-- News archive --></a></p>
+    </div>
+{% endif %}

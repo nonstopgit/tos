@@ -1,0 +1,96 @@
+[viewBag]
+==
+{% set article = __SELF__.article %}
+{% set latest = __SELF__.latest %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-7">
+
+            <article class="article">
+                <h2>{{ article.title }}</h2>
+
+                <div class="date">{{ article.created_at | date('m.d.Y') }}</div>
+
+                {% if article.external_image is not empty %}
+                    {% set image = '/media/images/000/000/' ~ article.external_image %}
+                {% else %}
+                    {% set image = article.image.path %}
+                {% endif %}
+                <div class="embed-responsive embed-responsive-16by9 bg-img" style="background-size: cover;background-image: url({{ image }});"></div>
+                <div class="lead">{{ article.short | raw }}</div>
+
+                {{ article.description | raw }}
+
+                {% if article.gallery is not empty %}
+                    <div class="gallery" id="lg">
+                        {% for item in article.gallery %}
+                            <div class="gallery-img" data-src="{{ item.path }}" !data-sub-html="text"><a href="#" style="background-image:url({{ item.path }});"></a></div>
+                            {#<div class="gallery-img" data-src="{{ item.getThumb(1200, 800) }}"><a href="{{ item.getThumb(1200, 800) }}" style="background-image:url({{ item.path }});" rel="gallery" data-toggle="lightbox" data-gallery="example-gallery" data-type="image"></a></div>#}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </article>
+
+        </div>
+        <div class="col-md-5">
+            <div class="more-news">
+                <h3>{{ 'Ostale novice'|_ }}</h3>
+
+                {% for last in latest %}
+                    <div class="small-news">
+                        <div class="date">{{ last.created_at | date('d.m.Y') }}</div>
+                        <p><a href="/{{ activeLocale }}/{{ 'novica' | _ | lower }}/{{ last.id }}/{{ last.slug }}">{{ last.title }}</a></p>
+                    </div>
+                {% endfor %}
+
+                {#
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+                #}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% put styles %}
+    <link href="{{ 'assets/vendor/lightgallery/dist/css/lightgallery.css'|theme }}" rel="stylesheet" />
+{% endput %}
+{% put scripts %}
+
+	<script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-pager.js/master/dist/lg-pager.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-zoom.js/master/dist/lg-zoom.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-hash.js/master/dist/lg-hash.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-share.js/master/dist/lg-share.js"></script>
+	
+    <script>
+        $(document).ready(function() {
+
+            lightGallery(document.getElementById('lg'), {
+    		    galleryId: 1,
+    			thumbnail: true
+            });
+
+        });
+    </script>
+{% endput %}

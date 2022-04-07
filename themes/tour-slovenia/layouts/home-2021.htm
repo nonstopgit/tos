@@ -1,0 +1,118 @@
+[staticPage]
+useContent = 1
+default = 1
+
+[localePicker]
+forceUrl = 1
+
+[articleList]
+perPage = 10
+itemPage = "novica"
+layout = "simple"
+
+[steps]
+layout = "minimal"
+
+[gallery]
+gallery = 1
+layout = "slider"
+
+[staticMenuMultilingual staticMenu]
+code = "main-menu"
+
+[tickerList]
+perPage = 10
+itemPage = "ticker"
+layout = "simple"
+stage = 1
+
+[Custom\Tof\Components\Slider slider]
+==
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>{{ this.page.title }}</title>
+    <meta name="description" content="{{ this.page.meta_description }}">
+    <meta name="title" content="{{ this.page.meta_title }}">
+    <meta name="author" content="NONSTOP www.nonstop.si">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
+    <!--Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ 'assets/css/style.css?v=2.2'|theme }}">
+    <link rel="stylesheet" href="{{ 'assets/css/extra.css?v=2-1'|theme }}">
+    {% styles %}
+    <link rel="shortcut icon" href="{{ 'assets/images/icons/favicon-16x16.png'|theme }}">
+</head>
+<body>
+{% partial 'site/header' %}
+
+{% partial 'site/slider' %}
+{% partial 'site/etape' %}
+
+<main>
+    <div class="container-fluid">
+        {#
+        <div class="row">
+            <div class="col-md-12">
+                <div class="patronage text-center mt-5 mb-3">{% content 'patronage' %}</div>
+            </div>
+        </div>
+        #}
+        <div class="row">
+            <div class="col-md-12 sponsors mt-5">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2 text-center pb-5 pb-md-0">
+                        <a href="http://telekom.si/" target="_blank"><img
+                                src="{{ 'assets/images/sponsors/telekom.png'|theme }}" alt="Telekom"></a>
+                    </div>
+                    <div class="col-sm-2 text-center pb-5 pb-md-0">
+                        <a href="http://www.adria-mobil.com/" target="_blank"><img
+                                src="/storage/app/media/sponsors/adria-mobil-2021.webp" alt="Adria Mobil"></a>
+                    </div>
+                    <div class="col-sm-2 text-center pb-5 pb-md-0">
+                        <a href="http://www.fiat.si/" target="_blank"><img
+                                src="{{ 'assets/images/sponsors/fiat.png'|theme }}" alt="Fiat"></a>
+                    </div>
+                    <div class="col-sm-2 text-center pb-5 pb-md-0">
+                        <a href="https://www.slovenia.info/en" target="_blank"><img
+                                src="{{ 'assets/images/sponsors/ifeelslovenia.png'|theme }}" alt="I Feel Slovenia"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% component 'articleList' %}
+            {% partial 'site/zmagovalci' %}
+        </div>
+        <div class="row">
+            {% partial 'site/utrinki' %}
+        </div>
+    </div>
+</main>
+
+{#% partial 'site/utrinki' %#}
+{% partial 'site/footer' %}
+
+<!-- Javascript -->
+<script src="{{ 'assets/js/app.js'|theme }}"></script>
+<script src="{{ 'assets/js/slick.min.js'|theme }}"></script>
+{#<script src="{{ 'assets/js/infinite-scroll.js'|theme }}"></script>#}
+<script src="{{ 'assets/js/custom.js?v=2'|theme }}"></script>
+<script src="{{ 'assets/js/countdown.js?v=6'|theme }}"></script>
+
+<script src="/modules/system/assets/js/framework.js"></script>
+<script src="/modules/system/assets/js/framework.extras.js"></script>
+
+{% scripts %}
+
+{% partial 'site/ga' %}
+
+</body>
+</html>

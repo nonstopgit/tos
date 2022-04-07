@@ -1,0 +1,55 @@
+[viewBag]
+==
+<footer>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="logo-dps">
+                    <img src="{{ 'assets/images/brand/foot-logo-2.png'|theme }}" class="l2" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="quickmenu">
+                    {% for item in staticMenu.menuItems if not item.viewBag.isHidden %}
+                        <a class="item" href="{{ item.url }}"{% if item.viewBag.isExternal %} target="_blank"{% endif %}>{{ item.title }}</a>
+                    {% endfor %}
+                    <!--a href="/sl/trgovina/" class="item">Trgovina</a-->
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-xs-12 col-md-2 logo-ac">
+                <img src="{{ 'assets/images/brand/foot-logo-1.png'|theme }}" alt="">
+            </div>
+            <div class="col-xs-12 col-md-2 logo-ac-2">
+                {% if activeLocale == "sl"%}
+                    <p><strong>Kolesarski klub Adria Mobil</strong> <br>
+                    Zaloška cesta 20 <br>
+                    8000 Novo mesto <br>
+                    Slovenija <br><br>
+                    <a href="mailto:office@tourofslovenia.si">office@tourofslovenia.si</a></p>
+                {% else %}
+                    <p><strong>Adria Mobil Cycling Team</strong> <br>
+                    Zaloška cesta 20 <br>
+                    8000 Novo mesto <br>
+                    Slovenia</p>
+                   <a href="mailto:office@tourofslovenia.si">office@tourofslovenia.si</a></p>
+                {% endif %}
+            </div>
+            <div class="col-xs-12 col-md-4 social">
+                <a href="https://www.facebook.com/TourOfSlovenia/ " target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                <a href="https://twitter.com/TourOfSlovenia" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/tourofsloveniaofficial/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a><br><br>
+                <a href="https://www.uci.org/" target="_blank"><img src="/storage/app/media/uci-road-pro-series.webp" alt="UCI Road Pro Series" style="width: 200px;"></a>
+                <br><br>
+            </div>
+            <div class="col-xs-12 col-md-4 logo-dps">
+                <p>© Copyright by 1993-{{ 'now'|date('Y') }} - Tour of Slovenia</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- /FOOTER -->

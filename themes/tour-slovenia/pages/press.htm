@@ -1,0 +1,113 @@
+title = "Press"
+url = "/press"
+layout = "default"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[viewBag]
+localeUrl[en] = "/press"
+
+[genericForm]
+rules[name] = "required"
+rules[surname] = "required"
+rules[email] = "required|email"
+rules[phone] = "required"
+rules[medium] = "required"
+rules[address] = "required"
+rules[zip] = "required"
+rules[city] = "required"
+rules[soglasje] = "required"
+rules_messages[required.name] = "Polje ime je obvezno"
+rules_messages[required.surname] = "Polje priimek je obvezno"
+rules_messages[required.email] = "Polje e-mail je obvezno"
+rules_messages[email.email] = "Polje e-mail ni pravilne oblike"
+rules_messages[required.address] = "Polje naslov je obvezno"
+rules_messages[required.zip] = "Polje poštna številka je obvezno"
+rules_messages[required.city] = "Polje poštna številka je obvezno"
+rules_messages[required.soglasje] = "Soglašati morate z izjavo"
+messages_success = "Your form was successfully submitted"
+messages_errors = "There were errors with your submission"
+mail_enabled = 0
+mail_subject = "Nova rezervacija na tourofslovenia.si"
+mail_recipients[] = "sasa@eve.si"
+mail_recipients[] = "media@tourofslovenia.si"
+mail_replyto = "media@tourofslovenia.si"
+mail_resp_enabled = 0
+inline_errors = "disabled"
+js_on_success = "alert('Sent');"
+sanitize_data = "disabled"
+anonymize_ip = "disabled"
+recaptcha_enabled = 1
+recaptcha_theme = "light"
+recaptcha_type = "image"
+recaptcha_size = "normal"
+==
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-6 col-lg-4">
+            <h2>{{ 'Kontakti'|_ }}</h2>
+            <div class="contacts">
+                <p><span>Organizacijski direktor dirke / Race director:</span> <br>
+                    <strong>Bogdan Fink</strong> <br><i class="fa fa-envelope-o" aria-hidden="true"></i> <a
+                            href="mailto:bogdan.fink@tourofslovenia.si">bogdan.fink@tourofslovenia.si</a></p>
+                <p><span>Vodja pisarne / Head office:</span> <br>
+                    <strong>Srečko Glivar</strong> <br><i class="fa fa-envelope-o" aria-hidden="true"></i> <a
+                            href="mailto:office@tourofslovenia.si">office@tourofslovenia.si</a></p>
+                <p><span>Odnosi z javnostmi / Media officer:</span> <br>
+                    <strong>Grega Stopar</strong> <br><i class="fa fa-envelope-o" aria-hidden="true"></i> <a
+                            href="mailto:media@tourofslovenia.si">media@tourofslovenia.si</a></p>
+            </div>
+            
+        </div>
+        <div class="col-md-6 col-lg-4">
+
+            {% content 'press-centers' %}
+
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <br>
+            <h3>Logotip dirke / Race logo</h3>
+            <div class="pdf-grid clearfix">
+                <div class="item item-50">
+                    <a href="/storage/app/media/fight-for-green/Slo_Tour_Logo.zip" target="_blank"
+                       style="background-image: url({{ 'assets/images/press/logo-tour-of-slovenia-download.jpg'|theme }});"></a>
+                </div>
+                <div class="item item-50">
+                    <a href="/storage/app/media/fight-for-green/SloTour_FightForGreen.zip" target="_blank"
+                       style="background-image: url({{ 'assets/images/press/logo-fight-for-green-download.jpg'|theme }});"></a>
+                </div>
+                <!--div class="item item-25">
+                    <a href="{{ 'assets/images/press/SloTour_25_Logo_v1.pdf'|theme }}" target="_blank"
+                       style="background-image: url({{ 'assets/images/press/SloTour_25_Logo_v1_360.jpg'|theme }});"></a>
+                </div>
+                <div class="item item-25">
+                    <a href="{{ 'assets/images/press/SloTour_25_Logo_v2.pdf'|theme }}" target="_blank"
+                       style="background-image: url({{ 'assets/images/press/SloTour_25_Logo_v2_360.jpg'|theme }});"></a>
+                </div>
+                <div class="item item-25">
+                    <a href="{{ 'assets/images/press/SloTour_25_Logo_v1_N.pdf'|theme }}" target="_blank"
+                       style="background-image: url({{ 'assets/images/press/SloTour_25_Logo_v1_N_360.jpg'|theme }});"></a>
+                </div>
+                <div class="item item-25">
+                    <a href="{{ 'assets/images/press/SloTour_25_Logo_v2_N.pdf'|theme }}" target="_blank"
+                       style="background-image: url({{ 'assets/images/press/SloTour_25_Logo_v2_N_360.jpg'|theme }});"></a>
+                </div-->
+            </div><br>
+
+            {#<h3>Leaflet 2018</h3>
+            <div class="pdf-grid clearfix">
+                <div class="item item-100">
+                    <a href="{{ 'assets/images/press/SloTour_2018_BILTEN_06_WEB.pdf'|theme }}" target="_blank" style="background-image: url({{ 'assets/images/temp/slider/01.jpg'|theme }});"></a>
+                </div>
+            </div>#}
+
+        </div>
+    </div>
+    
+    {#% component 'genericForm' %#}
+    <br><br>
+    <strong style="color: #00377b; font-size: 1.2em;">Akreditacije so se zaprle 4. junija 2021. / Accreditations were closed on 4th June 2021.</strong>
+
+</div>

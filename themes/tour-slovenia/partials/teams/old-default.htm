@@ -1,0 +1,86 @@
+[viewBag]
+==
+{% set teams = __SELF__.teams %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <h2>{{ 'Ekipe'|_ }}</h2>
+            
+            <div class="row">
+                {% for team in teams %}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="team">
+                            {#<a href="#" data-toggle="modal" data-target="#ekipa-{{ team.id }}">#}<img src="{{ team.image.path }}" alt="{{ team.name }}">{#</a>#}
+                            <h5>{{ team.short }}</h5>
+                            {#<h3><a href="#" data-toggle="modal" data-target="#ekipa-{{ team.id }}">{{ team.name }}</a></h3>#}
+                            <h3>{{ team.name }}</h3>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Modal -->
+            {#
+            {% for team in teams %}
+                <div class="modal fade" id="ekipa-{{ team.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{ team.name }} ({{ team.short }})</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul class="team-infos">
+                                            <li><i class="fa fa-info-circle" aria-hidden="true"></i>{{ team.info }}</li>
+                                            <li><i class="fa fa-bicycle" aria-hidden="true"></i>{{ team.bikes }}</li>
+                                            {% if team.director %}
+                                                <li><i class="fa fa-user" aria-hidden="true"></i><strong>{{ 'Športni direktor'|_ }}:</strong> {{ team.director }}</li>
+                                            {% endif %}
+                                            <li>
+                                                {% if team.website %}
+                                                    <a href="{{ team.website }}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i></a>
+                                                {% endif %}
+
+                                                {% if team.facebook %}
+                                                    <a href="{{ team.facebook }}" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                                                {% endif %}
+
+                                                {% if team.twitter %}
+                                                    <a href="{{ team.twitter }}" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="col-md-6 text-center">
+                                        <img src="{{ team.image.path }}" alt="{{ team.name }}">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <table>
+                                            {% for member in team.members %}
+                                                <tr>
+                                                    <td><strong>{{ member.number }}</strong></td>
+                                                    <td>{{ member.name }}</td>
+                                                    <td>{{ member.country }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            #}
+
+        </div>
+    </div>
+</div>

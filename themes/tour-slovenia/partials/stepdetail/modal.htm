@@ -1,0 +1,47 @@
+[viewBag]
+==
+{% set city = __SELF__.city  %}
+
+<div class="modal fade" id="obcina-01" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{ city.name }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p><img src="{{ city.hero.path }}"></p>
+                        {{ city.description | raw }}
+
+                        {% if city.mayor_signature %}
+                            <img src="{{ city.mayor_signature.path }}">
+                        {% endif %}
+
+                        {% if city.gallery is not empty %}
+                            <div class="gallery">
+                                {% for item in city.gallery %}
+                                    <div class="gallery-img"><a href="{{ item.getThumb(1200, 800) }}" style="background-image:url({{ item.path }});" rel="gallery" data-toggle="lightbox" data-gallery="example-gallery" data-type="image"></a></div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-4">
+                        {% for logo in city.logos %}
+                            <p><img src="{{ logo.path }}"></p>
+                        {% endfor %}
+                        <p><img src="{{ city.symbol.path }}" width="40%"></p>
+                        <p>
+                            <img src="{{ city.mayor.path }}" width="40%"><br>
+                            <strong>{{ city.mayor.title }}</strong><br>
+                            {{ city.mayor.description }}<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

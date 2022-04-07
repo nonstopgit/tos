@@ -1,0 +1,15 @@
+{% macro activeStage(stage) %}
+    {% if date("now") > date(stage.time_start) and date("now") < date(stage.time_end)  %}
+        true
+    {% else %}
+        false
+    {% endif %}
+{% endmacro %}
+
+{% macro afterStage(stage) %}
+    {% if date("now") > date(stage.time_end) %}
+        true
+    {% else %}
+        false
+    {% endif %}
+{% endmacro %}

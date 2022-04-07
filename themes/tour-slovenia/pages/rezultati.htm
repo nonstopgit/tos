@@ -1,0 +1,34 @@
+title = "Rezultati"
+url = "/rezultati"
+layout = "default"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[viewBag]
+localeUrl[en] = "/rezultati"
+localeTitle[en] = "Results"
+==
+<div id="divRRPublish" class="RRPublish"></div>
+<script type="text/javascript" src="https://my.raceresult.com/RRPublish/load.js.php?lang={{ activeLocale }}"></script>
+<script type="text/javascript">
+<!--
+	var rrp=new RRPublish(document.getElementById("divRRPublish"), 170194, "results");
+	rrp.ShowTimerLogo=true;
+	rrp.ShowInfoText=false;
+-->
+</script>
+{#
+<div id="divRRPublish" class="RRPublish"></div>
+<script type="text/javascript" src="https://my.raceresult.com/RRPublish/load.js.php?lang={{ activeLocale }}"></script>
+<script type="text/javascript">
+<!--
+	var rrp=new RRPublish(document.getElementById("divRRPublish"), 170194, "results");
+	rrp.ShowTimerLogo=true;
+	rrp.ShowInfoText=false;
+-->
+</script>
+<style>
+  /* Add custom CSS here or elsewhere to change the design */
+</style>
+#}

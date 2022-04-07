@@ -1,0 +1,161 @@
+name: 'Main menu'
+items:
+    -
+        title: Domov
+        nesting: ''
+        type: url
+        url: /
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Novice
+        nesting: ''
+        type: url
+        url: /sl/novice
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Etape
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: etape
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+            featured: '0'
+    -
+        title: Ekipe
+        nesting: ''
+        type: cms-page
+        url: ''
+        code: ''
+        reference: ekipe
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+            featured: '0'
+    -
+        title: 'Bilten 2021'
+        nesting: ''
+        type: url
+        url: 'https://tourofslovenia.si/storage/app/media/2021/tour-of-slovenia-2021-v10.pdf'
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '1'
+            featured: '0'
+    -
+        title: 'O dirki'
+        nesting: ''
+        type: url
+        url: /sl/o-dirki
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Zgodovina
+        nesting: ''
+        type: url
+        url: /sl/zgodovina
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+            featured: '0'
+    -
+        title: Sponzorji
+        nesting: ''
+        type: url
+        url: /sl/sponzorji
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: Galerija
+        type: url
+        url: /sl/galerija
+        code: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+            featured: '0'
+    -
+        title: Press
+        nesting: ''
+        type: url
+        url: /sl/press
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '0'
+    -
+        title: 'Po Sloveniji s kolesom'
+        nesting: ''
+        type: url
+        url: 'https://www.slovenia.info/sl/zgodbe/kolesarska-dirka-po-sloveniji-2021'
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '1'
+            featured: '0'
+    -
+        title: Trgovina
+        nesting: ''
+        type: url
+        url: 'https://vini.si/katalog-izdelkov/dirka-po-sloveniji'
+        code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
+        viewBag:
+            isHidden: '0'
+            cssClass: ''
+            isExternal: '1'
+            featured: '0'

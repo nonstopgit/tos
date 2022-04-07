@@ -1,0 +1,121 @@
+[viewBag]
+==
+{% set articles = __SELF__.tickers %}
+{#% import "macros/ellipsis.htm" as ellipsis %#}
+
+<div class="news container">
+    <h2>{{ 'V živo'|_ }}</h2>
+    <div class="article-feed">
+        {% for article in articles %}
+            <article class="article ticker">
+                <div class="row">
+                    <div class="col-sm-4">
+                        {% set image = article.image.path %}
+                        <div class="embed-responsive embed-responsive-16by9 bg-img"
+                             style="background-size: cover;background-image: url({{ image }});"></div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="date">{{ article.created_at|date('d.m.Y') }}{#{ article.created_at|date('d.m.Y H:i:s') }#}</div>
+                        <div !class="lead" style="color: #00377b;">{{ article.short | raw }}</div>
+
+                        {% if article.gallery is not empty %}
+                            <div class="gallery" id="lg{{ article.id }}">
+                                {% for item in article.gallery %}
+                                    <div class="gallery-img" data-src="{{ item.path }}" !data-sub-html="text"><a href="#" style="background-image:url({{ item.path }});"></a></div>
+                                    {#<div class="gallery-img"><a href="{{ item.getThumb(1200, 800) }}" style="background-image:url({{ item.path }});" rel="gallery" data-toggle="lightbox" data-gallery="example-gallery" data-type="image"></a></div>#}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+        {% endfor %}
+
+        <div class="col">
+            {#{ d(articles) }#}
+            {#% if articles.lastPage != articles.currentPage + 1 %#}
+            {% if articles.lastPage > articles.currentPage %}
+                <a href="/{{ activeLocale }}/{{ 'live' | _ | lower }}?page={{ articles.currentPage + 1 }}" class="pagination_next"></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% put styles %}
+    <link href="{{ 'assets/vendor/lightgallery/dist/css/lightgallery.css'|theme }}" rel="stylesheet" />
+{% endput %}
+
+{% put scripts %}
+	<script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-pager.js/master/dist/lg-pager.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-autoplay.js/master/dist/lg-autoplay.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-fullscreen.js/master/dist/lg-fullscreen.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-zoom.js/master/dist/lg-zoom.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-hash.js/master/dist/lg-hash.js"></script>
+	<script src="https://cdn.rawgit.com/sachinchoolur/lg-share.js/master/dist/lg-share.js"></script>
+	
+    <script>
+        $(document).ready(function() {  
+
+            
+            if( $('.article-feed').length )
+            {
+                /*$('.article-feed').infiniteScroll({
+                    path: '.pagination_next',
+                    append: '.article',
+                    status: '.scroller-status'
+                });*/
+                var inf = $('.article-feed').infiniteScroll({
+                    path: '.pagination_next',
+                    append: '.article',
+                    status: '.scroller-status'
+                });
+                inf.on( 'append.infiniteScroll', function( event, response, path, items ) {
+                   initGallery();
+                });
+            }
+            
+            initGallery();
+            
+    
+            function dataImage() {
+                $.each($('[data-img]'), function() {
+                    var $that = $(this);
+                    $that.css('background', 'url("' + $that.attr('data-img') + '") no-repeat center center').removeAttr('data-img');
+                });
+            }
+
+        });
+        
+        function initGallery()
+        {
+            $('.gallery').each(function () {
+                var i = $(this).attr('id');
+                    lightGallery(document.getElementById(i), {
+            		    galleryId: i,
+            			thumbnail: true
+                    });
+            });
+        }
+    </script>
+{% endput %}
+
+{#{ d(articles) }#}
+
+{% put styles %}
+    <style>
+        .pagination li {
+            padding-right: 15px;
+        }
+        .ticker p {
+            color: #00377b;
+            font-style: normal;
+        }
+        .news article {
+            padding: 20px;
+        }
+        .article {
+            border-bottom: 1px solid #ddd
+        }
+    </style>
+{% endput %}
