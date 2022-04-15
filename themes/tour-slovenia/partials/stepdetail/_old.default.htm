@@ -353,7 +353,6 @@
     <div class="row">
         <div class="col map">
             <div id="map">{#{ 'Google maps zemljevid'|_ }#}</div>
-            <div id="#elevation-div"></div>
         </div>
     </div>
 </div>
@@ -532,16 +531,16 @@
         altitude: true,
     
         // Display time info: true || "summary" || false
-        time: false,
+        time: true,
     
         // Display distance info: true || "summary" || false
         distance: true,
     
         // Summary track info style: "inline" || "multiline" || false
-        summary: 'inline',
+        summary: 'multiline',
     
         // Download link: "link" || false || "modal"
-        downloadLink: 'false',
+        downloadLink: 'link',
     
         // Toggle chart ruler filter
         ruler: true,
@@ -629,3 +628,90 @@
         }
     </style>
 {% endput %}
+
+{#% put scripts %}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPW1aZx0FhSpBaVgfrWR8FnQ_PkvpB7MU"></script>
+    <script type="text/javascript">
+        var locations = [];
+        var firstCity;
+        var lastCity;
+        var lastIndex;
+
+        {% for city in step.cities %}
+            locations.push({
+                'name': '{{ city.name }}',
+                'lat': '{{ city.lat }}',
+                'long': '{{ city.long }}'
+            });
+        {% endfor %}
+
+        var lastIndex = locations.length - 1;
+
+        firstCity = locations[0];
+        lastCity = locations[lastIndex];
+        locations.splice(0, 1);
+        locations.splice(-1,1);
+
+        function initialize() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: parseFloat(firstCity.lat), lng: parseFloat(firstCity.long)},
+                zoom: 8
+            });
+            //var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+            var ctaLayer = new google.maps.KmlLayer({
+                //url: 'http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml',
+                url: '{{ step.route.path }}',
+                map: map
+            });
+
+            let firstMarker = new google.maps.Marker({
+                position: {lat: parseFloat(firstCity.lat), lng: parseFloat(firstCity.long)},
+                icon: '{{ "assets/images/map-icons/stage-start.png" | theme }}',
+                map: map,
+                optimized: false,
+                zIndex: 99999999,
+            });
+
+            let lastMarker = new google.maps.Marker({
+                position: {lat: parseFloat(lastCity.lat), lng: parseFloat(lastCity.long)},
+                icon: '{{ "assets/images/map-icons/stage-finish.png" | theme }}',
+                map: map,
+                optimized: false,
+                zIndex: 99999999,
+            });
+
+            createInfoWindow(firstMarker, firstCity.name);
+            createInfoWindow(lastMarker, lastCity.name);
+
+            locations.forEach(function(item) {
+                let marker = new google.maps.Marker({
+                    position: {lat: parseFloat(item.lat), lng: parseFloat(item.long)},
+                    icon: '{{ "assets/images/map-icons/poi.png" | theme }}',
+                    map: map,
+                    optimized: false,
+                    zIndex: 99999,
+                });
+
+                createInfoWindow(marker, item.name);
+            });
+        }
+
+        function createInfoWindow(marker, title, symbol)
+        {
+            var infowindow = new google.maps.InfoWindow({
+                content: "<div style='color: #00377b; font-size: 26px; font-weight: bold;'>" + title + "</div>"
+            });
+
+            marker.addListener('mouseover', function() {
+                infowindow.open(map, this);
+            });
+
+            // assuming you also want to hide the infowindow when user mouses-out
+            marker.addListener('mouseout', function() {
+                infowindow.close();
+            });
+        }
+
+        window.onLoad = initialize();
+    </script>
+{% endput %#}

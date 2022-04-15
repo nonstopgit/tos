@@ -1,4 +1,4 @@
-name: main-menu
+name: 'Main menu EN'
 items:
     -
         title: Home
@@ -15,13 +15,9 @@ items:
             isExternal: '0'
     -
         title: Stages
-        nesting: ''
         type: cms-page
-        url: ''
         code: ''
         reference: etape
-        cmsPage: ''
-        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -110,9 +106,13 @@ items:
             isExternal: '0'
     -
         title: Gallery
+        nesting: ''
         type: url
         url: /en/gallery
         code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''

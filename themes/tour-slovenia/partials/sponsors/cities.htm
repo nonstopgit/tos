@@ -17,7 +17,7 @@
 
             <div class="col-sm-2 mb-2">
                 {{ item.name }}<br >
-                {% if item.symbol.path %}<img src="{{ item.symbol.path }}" style="width: 120px;" alt="{{ item.name }}">{% endif %}
+                {% if item.symbol.path %}<img src="{{ item.symbol.path }}" style="width: 120px; margin-bottom:1em;" alt="{{ item.name }}">{% endif %}
             </div>
 
         {% endfor %}
