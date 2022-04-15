@@ -51,6 +51,7 @@ $(document).ready(function() {
 
 	vph = $(window).height();
 	var hh = $('header').height();
+	var he = $('.etape-menu').height();
 
 	//$('.single-item').height(vph);
     //$('.single-item .slick-slide').height(vph);

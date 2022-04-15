@@ -2299,8 +2299,8 @@ font-size: 1.25rem;
   display: block;
   content: '';
   /* position: absolute; */
-  background: url(../images/icons/stage-start.png) no-repeat center;
-  width: 36px;
+  background: url(/themes/tour-slovenia/assets/images/map-icons/stage-start-shadow.webp) no-repeat center;
+  width: 45px;
   height: 48px;
   left: 0;
   top: 0;
@@ -2309,7 +2309,7 @@ font-size: 1.25rem;
   border-radius: 0;
 }
 .cities > li:last-child:before {
-  background-image: url(../images/icons/stage-finish.png);
+  background-image: url(/themes/tour-slovenia/assets/images/map-icons/stage-finish-shadow.webp);
 }
 .cities > li > a:hover { text-decoration: underline; }
 .cities >li > a > span.small { font-size: 16px; }
@@ -6154,7 +6154,7 @@ border: 1px solid #fff;
 }
 
 .team h3 {
-  color: #00377b;
+  color: #97d21f;
 }
 
 .team img {

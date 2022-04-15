@@ -1,4 +1,4 @@
-name: 'Main menu'
+name: 'Main menu SL'
 items:
     -
         title: Domov
@@ -28,13 +28,9 @@ items:
             isExternal: '0'
     -
         title: Etape
-        nesting: ''
         type: cms-page
-        url: ''
         code: ''
         reference: etape
-        cmsPage: ''
-        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -110,9 +106,13 @@ items:
             isExternal: '0'
     -
         title: Galerija
+        nesting: ''
         type: url
         url: /sl/galerija
         code: ''
+        reference: ''
+        cmsPage: ''
+        replace: ''
         viewBag:
             isHidden: '0'
             cssClass: ''
@@ -155,7 +155,7 @@ items:
         cmsPage: ''
         replace: ''
         viewBag:
-            isHidden: '0'
+            isHidden: '1'
             cssClass: ''
             isExternal: '1'
             featured: '0'
