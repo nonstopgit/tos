@@ -62,9 +62,9 @@ recaptcha_size = "normal"
             
         </div>
         <div class="col-md-6 col-lg-4">
-            <br><br>
-            <strong style="color: #00377b; font-size: 1.2em;">Informacije o press centrih so v pripravi.<br>Information on press centers is being prepared.</strong>
-            {#% content 'press-centers' %#}
+            {#<br><br>
+            <strong style="color: #00377b; font-size: 1.2em;">Informacije o press centrih so v pripravi.<br>Information on press centers is being prepared.</strong>#}
+            {% content 'press-centers' %}
 
         </div>
         <div class="col-md-6 col-lg-4">
@@ -107,7 +107,7 @@ recaptcha_size = "normal"
         </div>
     </div>
     
-    {#% component 'genericForm' %#}
+    {% component 'genericForm' %}
     <!--br><br>
     <strong style="color: #00377b; font-size: 1.2em;">Akreditacije so se zaprle 4. junija 2021. / Accreditations were closed on 4th June 2021.</strong-->
 
